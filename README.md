@@ -23,7 +23,9 @@ WHEN I click on the "New Note" button in the navigation at the top of the page
 THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column and the button disappears
 
 # Usage
-Please visit the following link to access the deployed application:
+Please visit the following link to access the deployed application: https://note-taker-iazv.onrender.com
+
+Please visit the following link to access the repo: https://github.com/jknowles10/Note-Taker/tree/main
 
 # Mock-up
 Note-taker app screenshot ![Preview](./Assets/notetaker%20app.png)
