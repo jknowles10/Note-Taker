@@ -13,9 +13,15 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 //GET route for landing page
+//app.get('*', (req, res) => {
+//res.sendFile(path.join(__dirname, '/public/index.html'));
+ //});
+
+
 app.get('/', (req, res) => {
- res.sendFile(path.join(__dirname, '/public/index.html'));
-});
+    res.sendFile(path.join(__dirname, '/public/index.html'));
+   });
+
 
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
@@ -24,7 +30,7 @@ app.get('/notes', (req, res) => {
 app.get('/api/notes', (req, res) => res.json(db)
 ); 
 
-app.post('api/notes', (req, res) => {
+app.post('/api/notes', (req, res) => {
     
 // destructuring 
     const { title, text } = req.body;
@@ -32,14 +38,15 @@ app.post('api/notes', (req, res) => {
     if (title && text) {
 const newNote = {
     title, 
-    text, 
+    text,
+    id: Math.floor(Math.random()*100), 
 };
 
 db.push(newNote);
 
- const noteString = JSON.stringify(db);
+ noteString = JSON.stringify(db);
 
-fs.writeFile(`./db/db.json`, noteString, (err) =>
+fs.writeFile('./db/db.json', noteString, (err) =>
 err
 ? console.error(err)
 : console.log('Note saved!'));
@@ -56,6 +63,6 @@ res.status(201).json(response);
 
 }});
 
-app.listen(PORT, () => 
+app.listen(PORT, () => {
     console.log(`App listening at http://localhost:${PORT}`)
-);
+});
